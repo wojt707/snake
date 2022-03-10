@@ -11,8 +11,8 @@ enum direction
     right
 };
 
-const int width{50};
-const int height{20};
+const int width{51};
+const int height{21};
 extern bool gameover;
 extern int x, y, fruitX, fruitY;
 
@@ -20,6 +20,6 @@ void setup();
 void draw();
 void input();
 void logic();
-int random(const int minimum, const int maximum);
+int randomNumber(int min, int max);
 
 #endif
