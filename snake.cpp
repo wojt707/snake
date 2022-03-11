@@ -9,7 +9,6 @@ int main(int argc, char const *argv[])
         draw();
         input();
         logic();
-        // _sleep(10);
     }
     return 0;
 }

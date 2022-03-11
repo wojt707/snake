@@ -1,14 +1,17 @@
 #include <iostream>
 #include <conio.h>
+#include <windows.h>
 #include "snakeLibrary.h"
 
 bool gameover;
-int x, y, fruitX, fruitY;
+int x, y, fruitX, fruitY, score;
+const char fruit = 3;
 direction dir;
 
 void setup()
 {
     gameover = false;
+    score = 0;
     dir = stop;
     x = width / 2;
     y = height / 2;
@@ -34,7 +37,7 @@ void draw()
             if (h == y && w == x)
                 std::cout << 'O';
             else if (h == fruitY && w == fruitX)
-                std::cout << 'F';
+                std::cout << fruit;
             else
                 std::cout << ' ';
         }
@@ -43,6 +46,7 @@ void draw()
     std::cout << "   ";
     for (int w = 0; w < width; w++)
         std::cout << '%';
+    std::cout << "\n\n   SCORE: " << score;
 }
 
 void input()
@@ -74,9 +78,11 @@ void logic()
     {
     case up:
         y--;
+        Sleep(50);
         break;
     case down:
         y++;
+        Sleep(50);
         break;
     case left:
         x--;
@@ -87,14 +93,20 @@ void logic()
     default:
         break;
     }
-    if (x == -1)
+    if (x == 0)
         x = width - 2;
-    else if (x == width)
+    else if (x == width - 1)
         x = 1;
-    if (y == -1)
+    if (y == 0)
         y = height - 2;
-    if (y == height)
+    if (y == height - 1)
         y = 1;
+    if (x == fruitX && y == fruitY)
+    {
+        score += 1;
+        fruitX = randomNumber(1, width - 2);
+        fruitY = randomNumber(1, height - 2);
+    }
 }
 
 int randomNumber(int min, int max)
