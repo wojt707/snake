@@ -1,6 +1,5 @@
 #include <iostream>
-#include <random>
-#include <chrono>
+#include <conio.h>
 #include "snakeLibrary.h"
 
 bool gameover;
@@ -29,20 +28,14 @@ void draw()
     for (int h = 1; h < height - 1; h++)
     {
         std::cout << "   %";
-        for (int w = 1; w < width-1; w++)
+        for (int w = 1; w < width - 1; w++)
         {
             if (h == y && w == x)
-            {
                 std::cout << 'O';
-            }
             else if (h == fruitY && w == fruitX)
-            {
                 std::cout << 'F';
-            }
             else
-            {
                 std::cout << ' ';
-            }
         }
         std::cout << '%' << std::endl;
     }
@@ -52,6 +45,27 @@ void draw()
 }
 void input()
 {
+    if (kbhit())
+    {
+        switch (getch())
+        {
+        case 'w':
+            dir = up;
+            break;
+        case 'a':
+            dir = left;
+            break;
+        case 's':
+            dir = down;
+            break;
+        case 'd':
+            dir = right;
+            break;
+        case 27:
+            gameover = true;
+            break;
+        }
+    }
 }
 void logic()
 {
@@ -59,7 +73,7 @@ void logic()
 
 int randomNumber(int min, int max)
 {
-    static bool first = true; // 
+    static bool first = true;
     if (first)
     {
         srand(time(NULL));

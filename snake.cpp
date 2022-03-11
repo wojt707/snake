@@ -3,13 +3,13 @@
 
 int main(int argc, char const *argv[])
 {
-    // while (!gameover)
-    // {
     setup();
-    draw();
-    input();
-    logic();
-
-    // }
+    while (!gameover)
+    {
+        draw();
+        input();
+        logic();
+        _sleep(100);
+    }
     return 0;
 }
