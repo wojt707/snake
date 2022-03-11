@@ -11,8 +11,8 @@ enum direction
     right
 };
 
-const int width{51};
-const int height{21};
+const int width{31};
+const int height{15};
 extern bool gameover;
 extern int x, y, fruitX, fruitY;
 
