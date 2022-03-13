@@ -10,15 +10,16 @@ enum direction
     left,
     right
 };
+
 struct coordinates
 {
     int x;
     int y;
 };
 
-
 const int width{15};
 const int height{11};
+const char fruitSymbol{3};
 extern bool gameover;
 
 void setup();

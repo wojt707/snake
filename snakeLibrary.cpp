@@ -6,10 +6,8 @@
 
 bool gameover;
 int score;
-coordinates head;
-coordinates fruit;
+coordinates head, fruit;
 std::vector<coordinates> tail;
-const char fruitSymbol = 3;
 direction _direction;
 
 void setup()
@@ -44,13 +42,25 @@ void draw()
             else if (h == fruit.y && w == fruit.x)
                 std::cout << fruitSymbol;
             else
-                std::cout << ' ';
+            {
+                bool isTail = false;
+                for (auto &&tailPiece : tail)
+                    if (h == tailPiece.y && w == tailPiece.x)
+                    {
+                        isTail = true;
+                        break;
+                    }
+                char c = (isTail) ? 'o' : ' ';
+                std::cout << c;
+            }
         }
         std::cout << '%' << std::endl;
     }
+
     std::cout << "   ";
     for (int w = 0; w < width; w++)
         std::cout << '%';
+
     std::cout << std::endl
               << std::endl
               << "   SCORE: " << score;
@@ -81,6 +91,12 @@ void input()
 
 void logic()
 {
+    if (tail.size())
+    {
+        for (int i = tail.size() - 1; i > 0; i--)
+            tail[i] = tail[i - 1];
+        tail[0] = head;
+    }
     switch (_direction)
     {
     case up:
@@ -99,8 +115,6 @@ void logic()
         head.x++;
         Sleep(20);
         break;
-    default:
-        break;
     }
     if (head.x == 0)
         head.x = width - 2;
@@ -115,6 +129,8 @@ void logic()
         score += 1;
         fruit.x = randomNumber(1, width - 2);
         fruit.y = randomNumber(1, height - 2);
+        coordinates tailEnd;
+        tail.push_back(tailEnd);
     }
 }
 
