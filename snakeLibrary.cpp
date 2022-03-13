@@ -137,6 +137,9 @@ void logic()
         coordinates tailEnd;
         tail.push_back(tailEnd);
     }
+    for (auto &&tailPiece : tail)
+        if (head.x == tailPiece.x && head.y == tailPiece.y)
+            gameover = true;
 }
 
 int randomNumber(int min, int max)
