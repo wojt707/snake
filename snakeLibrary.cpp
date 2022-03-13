@@ -38,21 +38,26 @@ void draw()
         for (int w = 1; w < width - 1; w++)
         {
             if (h == head.y && w == head.x)
-                std::cout << 'O';
-            else if (h == fruit.y && w == fruit.x)
-                std::cout << fruitSymbol;
-            else
             {
-                bool isTail = false;
-                for (auto &&tailPiece : tail)
-                    if (h == tailPiece.y && w == tailPiece.x)
-                    {
-                        isTail = true;
-                        break;
-                    }
-                char c = (isTail) ? 'o' : ' ';
-                std::cout << c;
+                std::cout << 'O';
+                continue;
             }
+
+            if (h == fruit.y && w == fruit.x)
+            {
+                std::cout << fruitSymbol;
+                continue;
+            }
+
+            bool isTail = false;
+            for (auto &&tailPiece : tail)
+                if (h == tailPiece.y && w == tailPiece.x)
+                {
+                    isTail = true;
+                    break;
+                }
+            char c = (isTail) ? 'o' : ' ';
+            std::cout << c;
         }
         std::cout << '%' << std::endl;
     }
