@@ -26,11 +26,10 @@ void draw()
 {
     system("cls");
 
-    std::cout << std::endl
-              << "   ";
+    std::cout << "\n   ";
     for (int w = 0; w < width; w++)
         std::cout << '%';
-    std::cout << std::endl;
+    std::cout << '\n';
 
     for (int h = 1; h < height - 1; h++)
     {
@@ -59,16 +58,14 @@ void draw()
             char c = (isTail) ? 'o' : ' ';
             std::cout << c;
         }
-        std::cout << '%' << std::endl;
+        std::cout << "%\n";
     }
 
     std::cout << "   ";
     for (int w = 0; w < width; w++)
         std::cout << '%';
 
-    std::cout << std::endl
-              << std::endl
-              << "   SCORE: " << score;
+    std::cout << "\n\n   SCORE: " << score;
 }
 
 void input()
@@ -77,16 +74,16 @@ void input()
         switch (getch())
         {
         case 'w':
-            _direction = up;
+            _direction = (_direction == down) ? down : up;
             break;
         case 'a':
-            _direction = left;
+            _direction = (_direction == right) ? right : left;
             break;
         case 's':
-            _direction = down;
+            _direction = (_direction == up) ? up : down;
             break;
         case 'd':
-            _direction = right;
+            _direction = (_direction == left) ? left : right;
             break;
         case 27:
             gameover = true;
